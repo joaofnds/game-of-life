@@ -1,0 +1,22 @@
+/* --component-state-property */
+
+:root {
+  --square-size: 15px;
+  --square-on-backgroundColor: #000;
+  --square-off-backgroundColor: #fff;
+}
+
+div.square {
+  width: var(--square-size);
+  height: var(--square-size);
+  border: 1px solid #ccc;
+  display: block;
+}
+
+div.square.on {
+  background-color: var(--square-on-backgroundColor);
+}
+
+div.square.off {
+  background-color: var(--square-off-backgroundColor);
+}
