@@ -1,7 +1,7 @@
 /* --component-state-property */
 
 :root {
-  --square-size: 15px;
+  --square-size: 20px;
   --square-on-backgroundColor: #000;
   --square-off-backgroundColor: #fff;
 }

@@ -3,45 +3,49 @@ import './App.css';
 
 import Grid from '../Grid/Grid';
 
-export interface Props {}
+export interface Props { }
 
 export interface State {
   generation: number;
-  gridFull: Array<Array<boolean>>;
+  speed: number;
+  rows: number;
+  columns: number;
+  paused: boolean;
 }
 
 class App extends React.Component<Props, State> {
-  private speed: number;
-  private rows: number;
-  private columns: number;
-
+  private grid: Grid;
   constructor() {
     super();
 
-    this.speed = 100;
-    this.rows = 30;
-    this.columns = 50;
-
     this.state = {
       generation: 0,
-      gridFull: Array(this.rows).fill(0).map(() => Array(this.columns).fill(false))
+      speed: 100,
+      rows: 30,
+      columns: 50,
+      paused: false
     };
   }
 
-  selectSquare = (i: number, j: number) => {
-    console.log('square selected', i, j);
+  updateGeneration = (generation: number) => {
+    this.setState({ generation });
   }
 
   render() {
     return (
       <div>
         <Grid
-          rows={this.rows}
-          columns={this.columns}
-          gridFull={this.state.gridFull}
-          selectSquare={this.selectSquare}
+          ref={(g) => { this.grid = g as Grid; }}
+          rows={this.state.rows}
+          columns={this.state.columns}
+          speed={this.state.speed}
+          onNewGeneration={this.updateGeneration}
         />
         <h2>Generation: {this.state.generation}</h2>
+        <button onClick={() => this.grid.fill.apply(this)}>Fill</button>
+        <button onClick={() => this.grid.reset.apply(this)}>Reset</button>
+        <button onClick={() => this.grid.pause.apply(this)}>Pause</button>
+        <button onClick={() => this.grid.play.apply(this)}>Play</button>
       </div>
     );
   }

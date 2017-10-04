@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Square.css';
 
 export interface Props {
-  squareClass: string;
+  isLive: boolean;
   key: string;
   squareId: string;
   row: number;
@@ -13,13 +13,14 @@ export interface State {}
 
 class Square extends React.Component<Props, State> {
   selectSquare = () => {
-    this.props.selectSquare(this.props.row, this.props.column);
+    this.props.selectSquare(this.props.column, this.props.row);
   }
 
   render() {
+    const isLive = this.props.isLive;
     return (
       <div
-        className={this.props.squareClass}
+        className={`square ${isLive ? 'on' : 'off'}`}
         id={this.props.squareId}
         onClick={this.selectSquare}
       />

@@ -2,6 +2,6 @@
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  width: calc(15px * 60);
+  width: calc(20px * 50);
   margin: 16px auto;
 }
